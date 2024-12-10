@@ -23,7 +23,7 @@ def is_nested_list(variable):
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 # bert_api_key = st.text_input("google-bert/bert-base-multilingual-cased API Key", type="password")
-bert_api_key = st.text_input("google-bert/bert-base-multilingual-cased API Key", value="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", type="password")
+bert_api_key = st.text_input("google-bert/bert-base-multilingual-cased API Key", value="", type="password")
 if not bert_api_key:
     st.info("Please add your API key to continue.", icon="🗝️")
 else:

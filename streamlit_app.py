@@ -56,15 +56,17 @@ else:
             # Query the API
             response = query({"inputs": prompt})
             result = ""
-
-            # Process the response
-            if is_nested_list(response):
-                for item in response:
-                    result += item[0]["sequence"]
-                    result += ". \n"
-            else:
-                result += response[0]["sequence"]
-
+            try:
+                # Process the response
+                if is_nested_list(response):
+                    for item in response:
+                        result += item[0]["sequence"]
+                        result += ". \n"
+                else:
+                    result += response[0]["sequence"]
+            except:
+                print("Failed to process the response")
+                result += "Something went wrong"
             # Add result to messages
             st.session_state.messages.append({"role": "assistant", "content": result})
             # Display the assistant's response

@@ -1,0 +1,23 @@
+@startuml precedent2
+
+actor "Пользователь" as User
+
+rectangle "Streamlit" {
+    rectangle "Графический интерфейс" as StreamlitGUI
+}
+
+rectangle "Hugging Face" {
+    rectangle "Модель Google BERT" as BERT
+}
+
+User --> StreamlitGUI : Отправить запрос
+StreamlitGUI --> User : Отправить ответ
+
+StreamlitGUI --> (Проверка валидности вводимых данных)
+
+(Проверка валидности вводимых данных) --> StreamlitGUI
+
+StreamlitGUI --> BERT : Отправить данные
+BERT --> StreamlitGUI : Отправить заполненные данные
+
+@enduml

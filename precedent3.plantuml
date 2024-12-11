@@ -1,0 +1,19 @@
+@startuml precedent3
+
+actor "Администратор" as Admin
+rectangle "Hugging Face" {
+    rectangle "Модель Google BERT" as BERT
+}
+rectangle "Streamlit" {
+    rectangle "Графический интерфейс" as StreamlitGUI
+}
+
+Admin --> (Управлять моделью)
+(Управлять моделью) --> BERT : Обновление/Настройка
+(Управлять моделью) --> StreamlitGUI : Обновление/Настройка
+
+note bottom of StreamlitGUI : Дополнение обработки ошибок, \nразных видов ввода, внешнего вида и поведения графического \nинтерфейса, модерирование доступа по различным признакам
+note bottom of BERT : Изменение параметров модели \n, стабильности, креативности ответов
+note top of Admin : Администратор может настраивать модель
+
+@enduml

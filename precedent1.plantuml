@@ -1,0 +1,32 @@
+@startuml precedent1
+left to right direction
+
+actor "Пользователь" as User
+actor "Администратор" as Admin
+rectangle "Hugging Face" {
+    rectangle "Модель Google BERT" as BERT
+}
+rectangle "Streamlit" {
+    rectangle "Графический интерфейс" as StreamlitGUI
+}
+rectangle "Система оценки активности пользователя ПК" as GradeSystem
+
+User --> (Отправить запрос)
+(Отправить запрос) --> StreamlitGUI : Использовать
+StreamlitGUI --> BERT : Использовать
+BERT --> StreamlitGUI
+StreamlitGUI --> (Получить ответ)
+(Получить ответ) --> User : Вернуть результат
+
+Admin --> (Управлять моделью)
+(Управлять моделью) --> BERT : Обновление/Настройка
+Admin --> (Управлять графическим интерфейсом)
+(Управлять графическим интерфейсом) --> StreamlitGUI : Обновление/Настройка
+
+GradeSystem --> BERT : дополнение собираемых данных 
+BERT --> GradeSystem
+GradeSystem --> User : Оценка активности
+
+note right of BERT : Модель получает запросы через Hugging Face
+note right of Streamlit : Графический интерфейс пользователя
+@enduml
